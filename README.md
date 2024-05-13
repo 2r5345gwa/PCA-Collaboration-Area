@@ -1,6 +1,6 @@
 # Collaboration-Area
 
-##Contributing
+## Contributing
 
 Create a fork of the repository.
 
