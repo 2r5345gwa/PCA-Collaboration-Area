@@ -1,0 +1,97 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix lis-ont: <http://rds.posccaesar.org/ontology/lis14/ont/> .
+@prefix lis-rdl: <http://rds.posccaesar.org/ontology/lis14/rdl/> .
+@prefix md-rdl: <http://rds.posccaesar.org/ontology/pca/rdl/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pca-ont: <http://rds.posccaesar.org/ontology/pca/ont/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+md-rdl:firstDefinedBy a owl:AnnotationProperty ;
+    rdfs:label "firstDefinedBy" ;
+    rdfs:comment "source that first defines the current state of the reference data item" ;
+    rdfs:isDefinedBy pca-ont:md ;
+    rdfs:subPropertyOf rdfs:isDefinedBy .
+
+md-rdl:hasStatus a owl:ObjectProperty ;
+    rdfs:label "hasStatus" ;
+    rdfs:comment "assigns status to a reference data item" ;
+    rdfs:isDefinedBy pca-ont:md ;
+    rdfs:range md-rdl:RDIStatus .
+
+md-rdl:originalIdentifier a owl:AnnotationProperty ;
+    rdfs:label "originalIdentifier" ;
+    rdfs:comment "ori         ;
+    rdfs:isDefinedBy pca-ont:md .
+
+md-rdl:previousStateDefinedBy a owl:AnnotationProperty ;
+    rdfs:label "previousStateDefinedBy" ;
+    rdfs:comment "source that defines the previous state of the reference data item" ;
+    rdfs:isDefinedBy pca-ont:md ;
+    rdfs:subPropertyOf rdfs:isDefinedBy .
+
+md-rdl:standardReference a owl:DatatypeProperty ;
+    rdfs:label "standardReference" ;
+    rdfs:comment "standard that publishes the reference data item" ;
+    rdfs:isDefinedBy pca-ont:md ;
+    rdfs:range xsd:string .
+
+md-rdl:statusChangeDate a owl:DatatypeProperty ;
+    rdfs:label "statusChangeDate" ;
+    rdfs:comment "date from which the reference data item's status is effective" ;
+    rdfs:isDefinedBy pca-ont:md ;
+    rdfs:range xsd:date .
+
+md-rdl:accepted a md-rdl:RDIStatus,
+        owl:NamedIndividual ;
+    rdfs:label "accepted" ;
+    rdfs:comment "used for 'proposed' reference data items that have been accepted by a dedicated group of users" ;
+    rdfs:isDefinedBy pca-ont:md ;
+    skos:related md-rdl:approved,
+        md-rdl:deprecated,
+        md-rdl:proposed .
+
+md-rdl:approved a md-rdl:RDIStatus,
+        owl:NamedIndividual ;
+    rdfs:label "approved" ;
+    rdfs:comment "used for 'accepted' reference data items that have been approved by a wider community of users" ;
+    rdfs:isDefinedBy pca-ont:md ;
+    skos:related md-rdl:accepted,
+        md-rdl:deprecated,
+        md-rdl:proposed .
+
+md-rdl:deprecated a md-rdl:RDIStatus,
+        owl:NamedIndividual ;
+    rdfs:label "deprecated" ;
+    rdfs:comment "used for reference data items that are available but no longer recommended to use" ;
+    rdfs:isDefinedBy pca-ont:md ;
+    skos:related md-rdl:accepted,
+        md-rdl:approved,
+        md-rdl:proposed .
+
+md-rdl:proposed a md-rdl:RDIStatus,
+        owl:NamedIndividual ;
+    rdfs:label "proposed" ;
+    rdfs:comment "used for newly proposed reference data items" ;
+    rdfs:isDefinedBy pca-ont:md ;
+    skos:related md-rdl:accepted,
+        md-rdl:approved,
+        md-rdl:deprecated .
+
+md-rdl:RDIStatus a owl:Class ;
+    rdfs:label "RDI Status" ;
+    rdfs:comment "class of statusses 'proposed', 'accepted', 'approved' and 'deprecated' used to indicate where an reference data item is in its life cycle" ;
+    rdfs:isDefinedBy pca-ont:md ;
+    rdfs:subClassOf lis-rdl:InformationObject .
+
+pca-ont:md a owl:Ontology ;
+    rdfs:label "pca-md" ;
+    dcterms:issued "2024-06-04" ;
+    dcterms:modified "2024-06-04" ;
+    dcterms:title "PCA Metadata Ontology" ;
+    rdfs:comment "provides vocabulary for metadata of reference data items" ;
+    owl:imports lis-ont:core ;
+    owl:versionIRI <http://rds.posccaesar.org/ontology/pca/ont/md/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+
